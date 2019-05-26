@@ -1,0 +1,61 @@
+This MATLAB package provides an implementation of the scattering transform as
+defined in [1] with additions related to audio data [3,4] and image data [2].
+
+The main function is 'scatt', which computes the scattering transform of a
+signal with several optional parameters. It takes both 1D and 2D signals.
+
+For audio signals, there is also 'cl_scatt', which computes the cosine log-
+scattering coefficients for a given signal, which is a representation 
+tailored to audio data. Notably, it computes the log of the scattering 
+coefficients and transforms these using a DCT to reduce the dimensionality.
+This is done with the functions 'transform_scatt' and 'dctmask'. For a 
+demonstration of functionality on audio signals, see demo/demo_audio.m .
+
+Experimental functionality is included for image data.
+
+The directory structure is as follows:
+
+- audio: Functions specific to handing audio scattering with
+  cosine-log scattering coefficients.
+- demo: Demo scripts to show the functionality of the toolbox.
+- scattering/1d: The filter-generating functions for 1D data. This includes a
+  mel-like filter bank in audio_filter_bank as well as ordinary Cauchy and 
+  spline filter banks.
+- scattering/2d: Experimental filter-generating functions for 2D data.
+- scattering/common: Main scattering functionality for 1D and 2D data:
+  computing scattering coefficients as well as applying orthogonal operators
+  to scattering vectors.
+- scattering/display: Functions for visualing scattering transforms.
+
+Should you have any questions/found any bugs, please 
+contact anden@cmap.polytechnique.fr .
+
+[1] Mathematical introduction of scattering operators for group invariant representations (78 pages):
+"Group Invariant Scattering" S. Mallat.
+[2] Scattering transform review with an image classification algorithm (6 pages) :
+"Classification with Scattering Operators" J. Bruna and S. Mallat. Proceedings of the IEEE CVPR 2011 conference.
+[3] Scattering transform applied to audio signals and musical classification (6 pages) :
+"Multiscale Scattering for Audio Classification" J. Andén and S. Mallat. Proceedings of the ISMIR 2011 conference.
+[4] Modulated source-filter models and their representation in the scattering transform (4 pages) :
+"Scattering Representation of Modulated Sounds" J. Andén and S. Mallat. Proceedings of the DAFx 2012 conference.
+
+
+VERSION 1, October 27, 2011
+	- Original version
+VERSION 1.01, November 18, 2011
+	- Various cleanup & commenting
+	- Corrected bugs in demo_audio and added examples
+	- Fixed passing of meta parameters in cl_scatt
+	- Made default parameters in dctmask more restrictive & fixed handling of first order
+	- Fixed rounding error in audio_next_bands
+	- Added missing function splinewavelet
+	- Corrected ordering in display_1d_scatter
+	- Added display_with_log option to 1D display functions
+VERSION 1.02, June 15th, 2012
+	- Removed display_1d_scatter.m and replaced with scattergram.m
+	- Fix low-frequency filters in Cauchy audio filter bank
+	- Fix cubic spline filter bank
+	- Add normalization to display_1d_scatter_slice.m and thresholding
+	- Remove display_1d_scatter call from audio demo
+	- Add modulated sound example from DAFx paper
+	- Minor bugfixes
